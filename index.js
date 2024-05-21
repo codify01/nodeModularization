@@ -5,9 +5,13 @@ dotenv.config()
 let PORT = process.env.PORT
 const mongoose = require('mongoose')
 const userRouter = require('./routes/user.route')
+const adminRouter = require('./routes/admin.route')
+const { welcomeAdmin } = require('./controllers/admin.controller')
 let URI = process.env.URI
 App.use(express.urlencoded({extended: true}))
 App.use('/user', userRouter)
+App.use('/admin', adminRouter)
+
 
 
 
