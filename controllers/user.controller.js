@@ -36,8 +36,7 @@ const regiterUser = (req,res)=>{
 
      const {fullName, password, email} = req.body
     let user = new userModel({fullName:fullName, password:password, email:email})
-    user.save()
-    .then(
+    user.save().then(
         (response)=>{
             console.log(response);
             console.log('success');
