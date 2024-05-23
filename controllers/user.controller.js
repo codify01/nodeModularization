@@ -3,6 +3,12 @@ const userModel = require('../models/user.model')
 const userProfile = (req,res)=>{
         res.send('welcome')
 }
+const signin = (req,res)=>{
+        res.send('welcome to signin')
+}
+const signup = (req,res)=>{
+        res.send('welcome to signup')
+}
 
 
 
@@ -27,17 +33,20 @@ const loginUser = (req,res)=>{
     })
 }
 const regiterUser = (req,res)=>{
-    console.log('I am working');
-    let user = new userModel(req.body)
-    user.save().then(
+
+     const {fullName, password, email} = req.body
+    let user = new userModel({fullName:fullName, password:password, email:email})
+    user.save()
+    .then(
         (response)=>{
             console.log(response);
             console.log('success');
-            // res.redirect("/signin")
+            res.status(200).send('User saved')
         }
     ).catch(
         (err)=>{
             console.log(err);
+            res.status(400).send('user not saved')
         }
     )
 }
@@ -45,4 +54,4 @@ const regiterUser = (req,res)=>{
 
 
 
-module.exports = {userProfile, regiterUser,loginUser}
+module.exports = {userProfile, regiterUser,loginUser,signin,signup}
